@@ -348,12 +348,12 @@ button:active{
         </div>
 
         <div class="frame cc">
-            <h2>Creator</h2>
+            <h2 id="creator">Creator</h2>
             <p>This project is the creation of </p>
             <p><a href="https://analogy.games/" target="_blank">AnAllergyToAnalogy</a></p>
             
-            <p>With advice and assistance from </p>
-            <p><a href="https://analogy.games/" target="_blank">[How do you want your name credited]</a></p>
+            <p>with agent visibility & distribution by</p>
+            <p><a href="https://yourmateagency.com.au/" target="_blank">Matt from Your Mate Agency</a></p>
 
         </div>
     </div>
