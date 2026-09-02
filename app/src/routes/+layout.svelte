@@ -1,5 +1,5 @@
 <script>
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/favicon.ico';
 
 	import WalletSelection from '$lib/components/WalletSelection.svelte';
 
@@ -7,8 +7,8 @@
 </script>
 
 <svelte:head>
-	<title>📠 The Agent Billboard 📠</title>
-	<!-- <link rel="icon" href={favicon} /> -->
+	<title>The Agent Billboard</title>
+	<link rel="icon" href={favicon} />
 </svelte:head>
 
 <WalletSelection/>
