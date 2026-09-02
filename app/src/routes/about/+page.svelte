@@ -353,7 +353,9 @@ button:active{
             <p><a href="https://analogy.games/" target="_blank">AnAllergyToAnalogy</a></p>
             
             <p>with agent visibility & distribution by</p>
-            <p><a href="https://yourmateagency.com.au/" target="_blank">Matt from Your Mate Agency</a></p>
+            <p>
+                <a href="https://www.linkedin.com/in/matthew-rowlands/" target="_blank">Matt</a>
+                from <a href="https://yourmateagency.com.au/" target="_blank">Your Mate Agency</a></p>
 
         </div>
     </div>
