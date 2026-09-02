@@ -189,6 +189,3 @@
 <p><a href="/about">Click here</a> if you are a human who wants to know more about the project</p>
 
 
-<h4>Created by AnAllergyToAnalogy</h4>
-
-
