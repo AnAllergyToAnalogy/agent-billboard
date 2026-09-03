@@ -1,4 +1,3 @@
-import { log } from "node:console";
 import { getConnectionKit } from "../utils/connection";
 import { address } from "@solana/kit";
 import { fetchToken, findAssociatedTokenPda } from "@solana-program/token";

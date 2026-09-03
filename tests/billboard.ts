@@ -176,8 +176,6 @@ describe("Billboard", ()=>{
 
   before(initTests);
   beforeEach(async()=>{
-    // log("billboard before each")
-    // account = creator;
     await refreshTestState();
   });
 
@@ -227,7 +225,6 @@ describe("Billboard", ()=>{
   describe("functionality", async()=>{
 
     beforeEach(async()=>{
-      // log("functionality: before each")
         setSigner(creator);
         await g.initialise(initialPoster.publicKey);
     })
@@ -273,8 +270,6 @@ describe("Billboard", ()=>{
 
 
       beforeEach(async()=>{
-        // log("usage before each")
-
         setSigner(poster0);
       })
 
@@ -314,8 +309,6 @@ describe("Billboard", ()=>{
 
           });
           it("subsequent", async()=>{
-
-            // todo();// add emssage and then make sure its cleared
 
             await acquire(AMOUNT_0);
 
@@ -382,15 +375,6 @@ describe("Billboard", ()=>{
           });
         })
         describe("Can't acquire if", async()=>{
-
-          // it("Message too long", async()=>{
-          //     const BAD_MESSAGE = "TEST".padEnd(Number(MESSAGE_SIZE));
-
-          //     await failsCorrectly(async()=>{
-          //       await post(BAD_MESSAGE,1000n);
-          //     },ERROR_SIZE);
-          // });
-
           it("Insufficient amount", async()=>{
             const AMOUNT_0 = 10_000_000n;
             const AMOUNT_BAD =  10_099_999n;
@@ -412,7 +396,6 @@ describe("Billboard", ()=>{
               await fails(async()=>{
                 await acquire(bal +1n);
               });
-              // todo();//the code here
           });
           describe("Incorrect address supplied for", ()=>{
             beforeEach(async()=>{
@@ -428,7 +411,6 @@ describe("Billboard", ()=>{
                 await failsWithCode(async()=>{
                   await g.acquire(200n);
                 },"0x7dc");
-                // todo()// code for bad account
               })
               it("prevPoster", async()=>{
 
@@ -459,11 +441,7 @@ describe("Billboard", ()=>{
       describe("append", ()=>{
 
         beforeEach(async()=>{
-
-          // log("append before each")
-
           setSigner(poster0);
-
           await acquire(100n);
         })
 
@@ -500,20 +478,14 @@ describe("Billboard", ()=>{
           })
           it("combined message too long", async()=>{
 
-            //todo: this is erroring because tx is identical - it is a svmlite issue not a contract issue
-
             const BAD_MESSAGE = "TEST".padEnd(Number(TX_MESSAGE_SIZE_LIMIT),"X");
-            // const BAD_MESSAGE = "TEST one two three";
-            // let total_message = "";
-            // let i = 0;
+
             let total_message = (await B()).message;
             while((total_message + BAD_MESSAGE).length <= Number(MESSAGE_SIZE)){
-              // await g.append(MESSAGE_0);
+
               await append(BAD_MESSAGE);
               total_message = (await B()).message;
-              // total_message += MESSAGE_0;
-              // log(i++)
-              // log(total_message)
+
             }
 
             await failsCorrectly(async()=>{
@@ -564,8 +536,6 @@ describe("Billboard", ()=>{
         
       });
     });
-
-
 
   })
 });

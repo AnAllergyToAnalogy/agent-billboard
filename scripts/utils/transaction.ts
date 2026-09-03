@@ -1,7 +1,7 @@
 import { appendTransactionMessageInstructions, createTransactionMessage, getSignatureFromTransaction, pipe, sendAndConfirmTransactionFactory, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash, Signature, signTransactionMessageWithSigners } from "@solana/kit";
 import { getConnectionKit } from "./connection";
 
-import { keypair as feePayer, initKeypair, keypair } from "./walletKit";
+import { keypair as feePayer,} from "./walletKit";
 
 let log = console.log;
 

@@ -6,7 +6,6 @@
 //    b
 //    c
 
-
 export function readArgs(required: string[] = [], optional:string[] = [], flags:string[] = [], help: boolean = false): {[key: string]: string}{
 
 

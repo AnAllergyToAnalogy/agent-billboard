@@ -32,14 +32,13 @@ import {
 import { address, type Address } from "@solana/kit";
 import { HUNDRED, MIN_PERCENT_INCREASE } from "./constants";
 import { setRpcError } from "./rpcError";
+import { network, rpcs } from "./rpcs";
+
 
 
 // Use free RPCs
-let http = "https://shared.eu-central-1.getblock.io/9e5457ea4bee4b1699543049d1cb4051";
-// let http = "https://api.devnet.solana.com";
-// let ws = "wss://api.devnet.solana.com";
-let ws = "wss://shared.eu-central-1.getblock.io/6ff076300794446bad41bf4321bc6ff3";
-const network = "devnet";
+let http = rpcs[0].http;
+let ws = rpcs[0].ws;
 
 let program:  {[key: string]: any};
 let billboardAccount: Address;
@@ -49,8 +48,6 @@ let billboardAccount: Address;
 
 onSubscriptionFail((e)=>{
     setRpcError("Failed to subscribe to program");
-    // log("subscription fail");
-    // log(e);
 })
 
 function registerEvents(){

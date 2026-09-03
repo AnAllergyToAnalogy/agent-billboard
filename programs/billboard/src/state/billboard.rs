@@ -14,4 +14,3 @@ pub struct Billboard {
     pub message:   String,
 
 }
-

@@ -1,14 +1,14 @@
 
 export const rpcs = [
-    
-    {   
-        name: "default",
-        http: "https://api.devnet.solana.com",
-        ws: "wss://api.devnet.solana.com"
-    },
     {
-        name: "getblock",
-        http: "https://shared.eu-central-1.getblock.io/9e5457ea4bee4b1699543049d1cb4051",
-        ws: "wss://shared.eu-central-1.getblock.io/6ff076300794446bad41bf4321bc6ff3"
-    }
+        name: "default",
+        http: "https://shared.us-east-1.getblock.io/24a2937f6af040ef963aba9b4be76d54",
+        ws: "wss://shared.us-east-1.getblock.io/8beb5069ef0744f7952d5c3863c84a5c"
+    },
+    {   
+        name: "solana free",
+        http: "https://api.mainnet-beta.solana.com",
+        ws: "wss://api.mainnet-beta.solana.com"
+    },
 ]
+export const network = "mainnet";

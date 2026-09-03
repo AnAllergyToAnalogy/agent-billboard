@@ -11,4 +11,3 @@ pub const PERCENT_PROTOCOL: u64 = 50_00;
 
 #[constant]
 pub const MESSAGE_SIZE: u16 = 1024 * 4;
-

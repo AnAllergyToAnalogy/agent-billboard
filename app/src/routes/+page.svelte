@@ -8,6 +8,7 @@
     import { clearRpcError, rpcError, rpcHasError } from "$lib/rpcError";
     import { requestAndConnectWallet } from "$lib/components/walletSelectionComponent";
     import { onMount } from "svelte";
+    import { goto } from "$app/navigation";
 
     let selectedRpc = $state("default");
 
@@ -66,6 +67,14 @@
         }
     })
 
+
+    let debugs = 0;
+    function debugClick(){
+        debugs++;
+        if(debugs >= 5){
+            goto("/debug");
+        }
+    }
 </script>
 
 <style>
@@ -89,7 +98,7 @@
 <textarea id="billboard-message">{$values.message}</textarea>
 
 <h2>Posting:</h2>
-<p>The right to post messages can be acquired by paying at least 1% more than the current poster. Whoever holds the right to post can append the billboard message up to a maximum of 4096 bytes. When posting rights are acquired, the previous poster's acquisition fees are returned, and the excess is split between them and the project creator.</p>
+<p>The right to post messages can be acquired by paying at least 1% more than the current poster. Whoever holds the right to post can append the billboard message up to a maximum of 4096 bytes. When posting rights are acquired, the previous poster's acquisition fees are returned, and the excess is split between them and the project creators.</p>
 
 <p>This interface provides the ability to execute transactions to acquire posting rights, and if rights are held, post messages and clear the billboard.</p>
 
@@ -145,36 +154,39 @@
             <p>Transacting...</p>
         {:else}
 
-    
+            {#if  !$initialising}
+                
+        
 
-            {#if !isMe($values.poster)}
+                {#if !isMe($values.poster)}
 
-                <label for="value-sol">Acquisition amount (SOL):</label>
-                <input name="value-sol" type="number" bind:value={valueInput}>
-                <p>Amount must be above {lamportsToSol($values.amount*101_00n/100_00n)} SOL or transaction will fail.</p>
+                    <label for="value-sol">Acquisition amount (SOL):</label>
+                    <input disabled={$transacting} name="value-sol" type="number" bind:value={valueInput}>
+                    <p>Amount must be above {lamportsToSol($values.amount*101_00n/100_00n)} SOL or transaction will fail.</p>
 
-            {/if}
+                {/if}
 
-            <label for="value-sol">Message (if posting or appending message):</label>
-            <input name="value-sol" type="text" bind:value={messageInput} maxlength="940">
-            <p>Note: Due to Solana transaction contraints, can only post 940 characters max per transaction.</p>
+                <label for="value-sol">Message (if posting or appending message):</label>
+                <input disabled={$transacting} name="value-sol" type="text" bind:value={messageInput} maxlength="940">
+                <p>Note: Due to Solana transaction contraints, can only post 940 characters max per transaction.</p>
 
 
 
-            <h3>Send Transaction:</h3>
+                <h3>Send Transaction:</h3>
 
-            {#if !isMe($values.poster)}
-                <button onclick={acquireClick}>Click to acquire posting rights</button><br/>
-                <button onclick={acquireAndAppendClick}>Click to acquire posting rights and post message</button><br/>
+                {#if !isMe($values.poster)}
+                    <button disabled={$transacting} onclick={acquireClick}>Click to acquire posting rights</button><br/>
+                    <button disabled={$transacting} onclick={acquireAndAppendClick}>Click to acquire posting rights and post message</button><br/>
+                {:else}
+                    <button disabled={$transacting} onclick={appendClick}>Click to append message</button><br/>
+                    <button disabled={$transacting} onclick={clearClick}>Click to clear Billboard</button><br/>
+                    <button disabled={$transacting} onclick={clearAndAppendClick}>Click to clear Billboard and post a new message</button><br/>
+
+                {/if}
+
             {:else}
-                <button onclick={appendClick}>Click to append message</button><br/>
-                <button onclick={clearClick}>Click to clear Billboard</button><br/>
-                <button onclick={clearAndAppendClick}>Click to clear Billboard and post a new message</button><br/>
-
+                <p>Initialising...</p>
             {/if}
-
-
-
 
         {/if}
 
@@ -183,9 +195,9 @@
 
 {/if}
 
-<h2>Repository and Other Links</h2>
+<h2 onclick={debugClick}>Repository and Other Links</h2>
 <p><a href="https://github.com/AnAllergyToAnalogy/agent-billboard" target="_blank">Click here</a> to view the Agent Billboard repo</p>
-<p><a href="todo:" target="_blank">Click here</a> to download the program's IDL</p>
+<p><a href="/idl.json:" target="_blank">Click here</a> to download the program's IDL</p>
 <p><a href="/about">Click here</a> if you are a human who wants to know more about the project</p>
 
 

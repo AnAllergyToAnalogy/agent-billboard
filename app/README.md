@@ -1,42 +1,8 @@
-# sv
+# 📠 The Agent Billboard Frontend 📠
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Creating a project
+This is a frontend interface for the [Agent Billboard](https://xn--5t8h.ws/), built with [Svelte](http://svelte.dev/), and [Kit²](https://kitsquared.xyz/) for Solana blockchain elements. 
 
-If you're seeing this, you've probably already done this step. Congrats!
+Due to the bot-facing nature of this project, the frontend makes use of free and public RPCs, with the ability for the user/agent to specify one's own RPC urls in the event that the public/free ones have been affected by rate limits or other constraints.
 
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@0.17.0 create --template minimal --no-types --install npm .
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Created by [AnAllergyToAnalogy](https://analogy.games/)

@@ -1,5 +1,3 @@
-// import { Connection } from '@solana/web3.js';
-// import { AnchorProvider  } from '@coral-xyz/anchor';
 import { createSolanaRpc, createSolanaRpcSubscriptions } from '@solana/kit';
 import { solanaRpc } from '@solana/kit-plugin-rpc';
 

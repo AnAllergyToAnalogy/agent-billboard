@@ -1,9 +1,8 @@
-import { appendTransactionMessageInstructions, assertIsTransactionMessageWithSingleSendingSigner, createSignableMessage, createTransactionMessage, getBase64EncodedWireTransaction, Instruction, partiallySignTransactionMessageWithSigners, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash, TransactionSendingSigner } from "@solana/kit";
+import { appendTransactionMessageInstructions, createTransactionMessage, getBase64EncodedWireTransaction, Instruction, partiallySignTransactionMessageWithSigners, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash, TransactionSendingSigner } from "@solana/kit";
 import { getConnectionKit } from "./connection";
 
 
-import {
-     initKeypair, keypair } from "./walletKit";
+import { keypair } from "./walletKit";
 import { pipe } from "codama";
 
 
