@@ -184,8 +184,8 @@
 {/if}
 
 <h2>Repository and Other Links</h2>
-<p><a href="https://todo.com" target="_blank">Click here</a> to view the Agent Billboard repo</p>
-<p><a href="https://todo.com" target="_blank">Click here</a> to download the program's IDL</p>
+<p><a href="https://github.com/AnAllergyToAnalogy/agent-billboard" target="_blank">Click here</a> to view the Agent Billboard repo</p>
+<p><a href="todo:" target="_blank">Click here</a> to download the program's IDL</p>
 <p><a href="/about">Click here</a> if you are a human who wants to know more about the project</p>
 
 
