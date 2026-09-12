@@ -1,16 +1,27 @@
+const {
+    MAX_WRITE_INTERVAL_MS,
+} = process.env;
+
 import fs from "fs";
 
 import util from "util";
 const exec = util.promisify(require("child_process").exec);
 
 let lastKnownState: null | any = null;
+let lastWriteTime: number = 0;
 
 
 export function checkGitReady(): boolean{
     return fs.existsSync(__dirname+"/output/.git");
 }
 
+export async function prepareStorageSync(): Promise<void>{
+    // Stash and pull to prevent conflicts from redundant instances
+    const result = await exec(`cd output; git stash; git pull`);
+}
+
 export async function updateStorage(
+    creator: string,
     poster: string,
     amount: bigint,
     message: string,
@@ -22,19 +33,33 @@ export async function updateStorage(
 
     // Created stringified state object
     const stringified = JSON.stringify({
+        creator,
         poster,
         amount: amount_stirng,
         message
     });
+    
+    const stringifiedWithTimestamp = JSON.stringify({
+        creator,
+        poster,
+        amount: amount_stirng,
+        message,
+        timestamp: Date.now(),
+    });
+
+
+    let hasNewData = stringified !== lastKnownState;
 
 
 
-    if(stringified !== lastKnownState){
+    if(hasNewData || (lastWriteTime + Number(MAX_WRITE_INTERVAL_MS) < Date.now())  ){
         //Difference found
+
+        await prepareStorageSync()
 
         fs.writeFileSync(
             __dirname+"/output/billboard.json",
-            stringified,
+            stringifiedWithTimestamp,
             {
                 encoding: "utf8"
             }
@@ -45,7 +70,8 @@ export async function updateStorage(
         // Wrote changes
 
         lastKnownState = stringified;
-        return true;
+        lastWriteTime = Date.now();
+        return hasNewData;
     }
 
     //No difference found, 

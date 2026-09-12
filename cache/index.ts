@@ -8,6 +8,7 @@ const {
     RECHECK_INTERVAL_MS,
     SUCCESS_WAIT_INTERVAL_MS,
     FAIL_WAIT_INTERVAL_MS,
+    MAX_WRITE_INTERVAL_MS,
 } = process.env;
 
 let log = console.log;
@@ -45,6 +46,7 @@ async function initialise(){
         "RECHECK_INTERVAL_MS",
         "SUCCESS_WAIT_INTERVAL_MS",
         "FAIL_WAIT_INTERVAL_MS",
+        "MAX_WRITE_INTERVAL_MS"
     ]);
 
     if(!checkGitReady()){
@@ -72,6 +74,7 @@ async function main(){
 
     if(state){
         const changed = await updateStorage(
+            state.creator.toString(),
             state.poster.toString(),
             state.amount,
             state.message
@@ -84,6 +87,7 @@ async function main(){
             log("--------------------------------")
 
             log();
+            log("Creator:",state.creator);
             log("Poster:",state.poster);
             log("Amount:",state.amount);
             log("Message:",state.message);

@@ -50,6 +50,7 @@ export async function getBillboardState(){
     }
 
     let state: BillboardState = {
+        creator: data.creator,
         amount: data.amount,
         message: data.message,
         poster: data.poster,

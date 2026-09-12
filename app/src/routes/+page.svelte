@@ -1,4 +1,5 @@
 <script lang="ts">
+
     //@ts-ignore
 	import type { PageProps } from './$types';
 	// let pageProps: PageProps = $props();
@@ -19,6 +20,7 @@
     import { requestAndConnectWallet } from "$lib/components/walletSelectionComponent";
     import { onMount } from "svelte";
     import { goto } from "$app/navigation";
+    import { formatDuration } from '$lib/ui';
 
     let selectedRpc = $state("default");
 
@@ -107,6 +109,9 @@
     function styleClick(){
         style = !style;
     }
+
+    let pageLoadTime = Date.now();
+
 </script>
 
 {#if style}
@@ -257,9 +262,6 @@
 <section>
     <h2>Billboard</h2>
 
-
-
-    <!-- {#if !$values.amount && data.cache || true} -->
         <p>The current message was posted by: </p>
         <h4>
           {billboard.poster}  
@@ -274,15 +276,10 @@
         <p>The current message is:</p>
         <textarea id="billboard-message" readonly>{data.cache.message}</textarea>
 
-        {#if !$values.amount && data.cache}
-            <small>NOTE: These are cached values. Read chain directly to ensure up-to-date Billboard state.</small>
+        {#if !$values.amount && data.cache }
+            <small>NOTE: These are cached values. Data age: {formatDuration(pageLoadTime - data.cache.timestamp)}. Read chain directly to ensure up-to-date Billboard state. </small>
         {/if}
-    <!-- {:else}
-        <p>The current message was posted by: {$values.poster}</p>
-        <p>The amount paid to post was: {lamportsToSol($values.amount)} SOL</p>
-        <p>The current message is:</p>
-        <textarea id="billboard-message" readonly>{$values.message}</textarea>
-    {/if} -->
+
 </section>
 
 
