@@ -1,0 +1,14 @@
+{
+  "name": "billboard-cache",
+  "version": "1.0.0",
+  "description": "Cache system for `billboard.json` that minimises risk of downtime, and load issues at minimum cost.",
+  "license": "ISC",
+  "author": "",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "dependencies": {
+    "@solana/kit": "^8.2.0",
+    "dotenv": "^17.4.2"
+  }
+}

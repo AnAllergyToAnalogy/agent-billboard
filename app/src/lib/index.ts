@@ -77,36 +77,53 @@ function killOldProgram(){
 let firstInit = true;
 export let initialising = writable(false);
 export async function reInitialise(_http: string, _ws: string){
+    console.warn("re initialise...")
     if(get(initialising)) return;
     initialising.set(true);
     if(!firstInit){
+        log("un initialise...")
         uninitialise();
     }
 
+    log("set new params")
     http = _http;
     ws = _ws;
 
-    await initialise();
+    log("initialise...")
+
+    try{
+        await initialise();
+    }catch(e){
+        console.error("ERROR:")
+        log(e)
+    }
+
     initialising.set(false);
 }
 
 let killOnConnect: Function, killOnDisconnect: Function;
 async function initialise(){
-    
+    log("initialise...")
     init(http,ws,network);
 
+    log("create program..")
     program = await createProgram(programClient,idl, signer);
+
+    log("register dropout...")
     program.onEventDropout((programName: string)=>{
         //Event dropout
         setRpcError("Event dropout: "+programName);
     })
 
+    log("set account..")
     billboardAccount = await program.pda(["billboard"]);
+
+
 
     registerEvents();
 
     killOnConnect = onConnect(async ()=>{
-        console.log("wallet connected")
+        console.log("wallet connected..")
 
         killOldProgram();
 
