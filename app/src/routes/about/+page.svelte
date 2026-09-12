@@ -1,153 +1,80 @@
 <style>
 
 
-*{
-    padding: 0;
-    margin: 0;
+    *{
+        padding: 0;
+        margin: 0;
 
-    font-family: sans-serif;
-}
-
-
-html{
-    /* background: black; */
-
-    /* background: linear-gradient(
-        180deg,
-        #212e19,
-        #161f10
-    ); */
-
-    background: lightblue;
-
-    /* background-repeat:round; */
-    background-size: cover;
-}
+        font-family: sans-serif;
+    }
 
 
-.main-background{
-    background: lightblue;
+    html{
+        background: lightblue;
+        background-size: cover;
+    }
 
 
-    width: 100vw;
-    /* height: 100vh; */
-/* 
-    background: linear-gradient(
-        180deg,
-        #212e19,
-        #161f10
-    ); */
+    .main-background{
+        background: lightblue;
 
-    z-index: -1000;
-}
 
-body{
-    width: 100vw;
+        width: 100vw;
+        z-index: -1000;
+    }
 
-    /* background: greenyellow; */
+    body{
+        width: 100vw;
+    }
 
-    /* background: red;; */
-}
+    .cc{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-.cc{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.cr{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
 
-.width{
-    width: 500px;
-    max-width: calc(100vw - 20px);
-}
 
-/*
-@media (min-width: 445px ) and (max-height: 600px) {
-    .width{
-        width: calc( 100vw - 100px);
+    *{
+        font-family: "Roboto Mono", monospace;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+
+    }
+    a:visited{
+        color: inherit;
+    }
+
+
+    button{
+        outline: solid 1px black;
         background: white;
-        max-width: calc(100vw - 20px);
+        color: black;
+        border-radius: none;
+        border: none;
+        padding: 2px 10px;
     }
-    
-}*/
-
-
-*{
-    font-family: "Roboto Mono", monospace;
-    font-optical-sizing: auto;
-    /* font-weight: <weight>; */
-    font-style: normal;
-  }
-  .material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24
+    button:hover{
+        outline: solid 2px white;
+        background: black;
+        color: white;
+    }
+    button:active{
+        background: white;
+        color: black;
     }
 
-a{
-    text-decoration: none;
-    color: inherit;
-
-}
-a:visited{
-    color: inherit;
-}
+    .shadow{
+        box-shadow: 10px 10px 2px rgba(0,0,0,0.5);
+    }
 
 
-button{
-    outline: solid 1px black;
-    background: white;
-    color: black;
-    border-radius: none;
-    border: none;
-    padding: 2px 10px;
-}
-button:hover{
-    outline: solid 2px white;
-    background: black;
-    color: white;
-}
-button:active{
-    background: white;
-    color: black;
-}
-
-.shadow{
-    box-shadow: 10px 10px 2px rgba(0,0,0,0.5);
-}
-
-.window{
-    background: white;
-    outline: solid 5px black;
-    padding: 10px 10px;
-
-    /* min-width: 400px; */
-
-    width: 400px;
-    max-width: 80vw;
-    /* width: calc(min(500px, 90vw)); */
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    align-items: center;
-
-    pointer-events:auto;
-
-    
-}
-
-
-.centre{
+/* .centre{
     padding: 3px 10px;
     max-width: 350px;
     text-align: center;        
@@ -175,7 +102,7 @@ button:active{
 
 .advance{
     background: rgb(161, 232, 255);
-}
+} */
 
 
 /* ======= */
@@ -255,7 +182,6 @@ button:active{
     }
     h1, h2{
         text-align: center;
-
     }
 
     h2{
@@ -268,13 +194,13 @@ button:active{
     p{
         margin-bottom:15px;
     }
-    .mb0{
+    /* .mb0{
         margin-bottom:0;
     }
     .highlight{
         color:rgb(255, 85, 0);
         font-weight: bold;
-    }
+    } */
 
 </style>
 
