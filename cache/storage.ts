@@ -21,6 +21,7 @@ export async function prepareStorageSync(): Promise<void>{
 }
 
 export async function updateStorage(
+    pastLogs: any[],
     creator: string,
     poster: string,
     amount: bigint,
@@ -30,6 +31,7 @@ export async function updateStorage(
 
     let amount_stirng = String(amount);
 
+    let pastLogsStringified = JSON.stringify(pastLogs);
 
     // Created stringified state object
     const stringified = JSON.stringify({
@@ -49,6 +51,19 @@ export async function updateStorage(
 
 
     let hasNewData = stringified !== lastKnownState;
+
+
+    if (hasNewData){
+        await prepareStorageSync()
+
+        fs.writeFileSync(
+            __dirname+"/output/history.json",
+            pastLogsStringified,
+            {
+                encoding: "utf8"
+            }
+        )
+    }
 
 
 

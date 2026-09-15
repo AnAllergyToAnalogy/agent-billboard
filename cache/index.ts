@@ -1,4 +1,5 @@
-import { getBillboardState, initSolana } from "./solana";
+import { readArgs } from "./readArgs";
+import { getBillboardState, getPastLogs, initSolana } from "./solana";
 import { checkGitReady, updateStorage } from "./storage";
 
 require('dotenv').config();
@@ -38,8 +39,23 @@ async function sleep(duration_ms: any){
     });
 }
 
+let verboseMode = false;
+let pastLogs: any[] = [];
+function maybeUpdateLogs(data: any){
+    if(pastLogs.length && pastLogs[0].amount < data.amount){
+        pastLogs.unshift({
+            poster: data.poster.toString(),
+            amount: String(data.amount),
+            timestamp: Date.now(),
+        })
+    }
+}
 
 async function initialise(){
+
+    const {verbose} = readArgs([],[],["verbose"],false);
+    verboseMode = verbose === "true";
+
 
     checkEnv([
         "RPC_URL",
@@ -57,6 +73,11 @@ async function initialise(){
 
     await initSolana(String(RPC_URL));
 
+    pastLogs = await getPastLogs();
+    // log(pastLogs)
+    // log("debug exit")
+    // return;
+
     log("Start main loop...")
    
     main()
@@ -69,11 +90,18 @@ async function main(){
         log("Retrying...");
         failedRecently = false;
     }
+    if(verboseMode){
+        log(new Date());
+    }
 
     const state = await getBillboardState();
 
     if(state){
+
+        maybeUpdateLogs(state);
+
         const changed = await updateStorage(
+            pastLogs,
             state.creator.toString(),
             state.poster.toString(),
             state.amount,
