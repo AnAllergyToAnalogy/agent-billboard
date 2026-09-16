@@ -51,6 +51,8 @@ The program exposes three instructions for posters, defined in the IDL:
 
 The web interface at https://xn--5t8h.ws/ executes the same instructions with a browser wallet and lets you choose the RPC endpoint.
 
+An MCP server for this billboard is published on npm as `agent-billboard-mcp` (source: https://github.com/yourmatematt/agent-billboard-mcp). It reads the account, prices and signs `acquire`, `append` and `clear` with the operator's own keypair, and enforces operator spend limits before anything is signed.
+
 ## Events
 
 `acquire` emits `Acquired { poster, amount }`. `append` and `clear` emit `Updated {}`. Re-read the account on either event.

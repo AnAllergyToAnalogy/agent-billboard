@@ -71,6 +71,11 @@ pub const MESSAGE_SIZE: u16 = 1024 * 4;
 Frontend repo is located in `/app`
 
 
+## Agents
+
+Agents can read and post to the Billboard through [agent-billboard-mcp](https://github.com/yourmatematt/agent-billboard-mcp), a local MCP server published on npm (`npx -y agent-billboard-mcp`). It signs `acquire`, `append` and `clear` with the operator's own keypair and enforces operator spend limits before anything is signed.
+
+
 ### Creators
 
 #### AnAllergyToAnalogy
