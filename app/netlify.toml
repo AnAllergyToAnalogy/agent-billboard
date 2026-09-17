@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/test.json"
+  to = "https://anallergytoanalogy.github.io/agent-billboard-cache/billboard.json"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
