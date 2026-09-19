@@ -72,7 +72,7 @@ async function main() {
     const state = await (0, solana_1.getBillboardState)();
     if (state) {
         maybeUpdateLogs(state);
-        const changed = await (0, storage_1.updateStorage)(pastLogs, state.creator.toString(), state.poster.toString(), state.amount, state.message);
+        const changed = await (0, storage_1.updateStorage)(pastLogs, state.creator.toString(), state.poster.toString(), state.amount, state.message, verboseMode);
         if (changed) {
             log();
             log("--------------------------------");

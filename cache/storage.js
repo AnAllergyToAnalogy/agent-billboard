@@ -20,7 +20,7 @@ async function prepareStorageSync() {
     // Stash and pull to prevent conflicts from redundant instances
     const result = await exec(`cd output; git stash; git pull`);
 }
-async function updateStorage(pastLogs, creator, poster, amount, message) {
+async function updateStorage(pastLogs, creator, poster, amount, message, verboseMode = false) {
     let amount_stirng = String(amount);
     let pastLogsStringified = JSON.stringify(pastLogs);
     // Created stringified state object
@@ -40,6 +40,9 @@ async function updateStorage(pastLogs, creator, poster, amount, message) {
     let hasNewData = stringified !== lastKnownState;
     let prepared = false;
     if (hasNewData) {
+        if (verboseMode) {
+            console.log("Has new data..");
+        }
         await prepareStorageSync();
         prepared = true;
         fs_1.default.writeFileSync(__dirname + "/output/history.json", pastLogsStringified, {
@@ -53,6 +56,9 @@ async function updateStorage(pastLogs, creator, poster, amount, message) {
     // console.log("Date.now():",Date.now());
     if (hasNewData || isPastWriteTime) {
         //Difference found
+        if (verboseMode) {
+            console.log("Writing.. IsPastWriteTime?", isPastWriteTime);
+        }
         if (!prepared) {
             await prepareStorageSync();
         }
