@@ -6,7 +6,9 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ params }: any) => {
 
-    const response = await fetch(PUBLIC_HISTORY_URL);
+    const freshmaker = `?t=${Date.now()}`;
+
+    const response = await fetch(PUBLIC_HISTORY_URL+freshmaker);
 
     let history;
     if (!response.ok){
