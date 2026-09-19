@@ -96,6 +96,9 @@ async function main(){
 
     const state = await getBillboardState();
 
+
+    
+
     if(state){
 
         maybeUpdateLogs(state);

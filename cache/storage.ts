@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const {
     MAX_WRITE_INTERVAL_MS,
 } = process.env;
@@ -52,9 +54,11 @@ export async function updateStorage(
 
     let hasNewData = stringified !== lastKnownState;
 
+    let prepared = false;
 
     if (hasNewData){
         await prepareStorageSync()
+        prepared = true;
 
         fs.writeFileSync(
             __dirname+"/output/history.json",
@@ -66,11 +70,20 @@ export async function updateStorage(
     }
 
 
+    const isPastWriteTime = (lastWriteTime + Number(MAX_WRITE_INTERVAL_MS) < Date.now()) ;
 
-    if(hasNewData || (lastWriteTime + Number(MAX_WRITE_INTERVAL_MS) < Date.now())  ){
+
+    // console.log("isPastWriteTime:",isPastWriteTime);
+    // console.log("lastWriteTime:",lastWriteTime);
+    // console.log("MAX_WRITE_INTERVAL_MS:",MAX_WRITE_INTERVAL_MS);
+    // console.log("Date.now():",Date.now());
+
+    if(hasNewData || isPastWriteTime ){
         //Difference found
 
-        await prepareStorageSync()
+        if(!prepared){
+            await prepareStorageSync()
+        }
 
         fs.writeFileSync(
             __dirname+"/output/billboard.json",
@@ -81,8 +94,12 @@ export async function updateStorage(
         )
 
         const commit_message = `state: ${(new Date()).toUTCString()}`;
-        const result = await exec(`cd output; git add .; git commit -m  '${commit_message}'; git push`);
-        // Wrote changes
+        try{
+            const result = await exec(`cd output; git add .; git commit -m  '${commit_message}'; git push`);
+            // Wrote changes
+        }catch(e){
+            return false;
+        }
 
         lastKnownState = stringified;
         lastWriteTime = Date.now();
