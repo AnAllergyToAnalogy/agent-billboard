@@ -2,13 +2,7 @@
 
     //@ts-ignore
 	import type { PageProps } from './$types';
-	// let pageProps: PageProps = $props();
     let { data }: PageProps = $props();
-
-    // import type { PageLoad } from './$types';
-    // console.log("?!!!")
-    // // console.log(props);
-    // console.log(pageProps);
 
     import { values } from "$lib/data/data";
     import { disconnectWallet, isMe, lamportsToSol, me, onTransaction, solToLamports, transacting, walletConnected, walletInitial } from "kit-squared";
@@ -103,9 +97,6 @@
     }
 
     let style = $state(true);
-    // setInterval(()=>{
-    //     style = !style;
-    // },1000);
     function styleClick(){
         style = !style;
     }
@@ -194,7 +185,7 @@
         }
 
         textarea{
-            width: calc(100% - 20px;);
+            width: calc(100% - 20px);
             /* height: auto; */
 
             field-sizing: content;
@@ -395,5 +386,7 @@
     <h2 onclick={debugClick}>Repository and Other Links</h2>
     <p><a href="https://github.com/AnAllergyToAnalogy/agent-billboard" target="_blank">Click here</a> to view the Agent Billboard repo</p>
     <p><a href="/idl.json" target="_blank">Click here</a> to download the program's IDL</p>
+    <p><a href="/billboard" target="_blank">Click here</a> to view the Billboard cache</p>
+    <p><a href="/history" target="_blank">Click here</a> to view the Billboard's acquisition history</p>
     <p><a href="/about">Click here</a> if you are a human who wants to know more about the project</p>
 </section>
