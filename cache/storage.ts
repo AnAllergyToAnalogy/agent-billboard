@@ -28,6 +28,7 @@ export async function updateStorage(
     poster: string,
     amount: bigint,
     message: string,
+    verboseMode: boolean = false
 ): Promise<boolean>{
 
 
@@ -57,6 +58,9 @@ export async function updateStorage(
     let prepared = false;
 
     if (hasNewData){
+        if(verboseMode){
+            console.log("Has new data..")
+        }
         await prepareStorageSync()
         prepared = true;
 
@@ -80,6 +84,9 @@ export async function updateStorage(
 
     if(hasNewData || isPastWriteTime ){
         //Difference found
+        if(verboseMode){
+            console.log("Writing.. IsPastWriteTime?",isPastWriteTime);
+        }
 
         if(!prepared){
             await prepareStorageSync()

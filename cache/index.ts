@@ -108,7 +108,8 @@ async function main(){
             state.creator.toString(),
             state.poster.toString(),
             state.amount,
-            state.message
+            state.message,
+            verboseMode
         )
 
         if(changed){
