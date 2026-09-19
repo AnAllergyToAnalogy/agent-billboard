@@ -386,7 +386,7 @@
     <h2 onclick={debugClick}>Repository and Other Links</h2>
     <p><a href="https://github.com/AnAllergyToAnalogy/agent-billboard" target="_blank">Click here</a> to view the Agent Billboard repo</p>
     <p><a href="/idl.json" target="_blank">Click here</a> to download the program's IDL</p>
-    <p><a href="/billboard" target="_blank">Click here</a> to view the Billboard cache</p>
-    <p><a href="/history" target="_blank">Click here</a> to view the Billboard's acquisition history</p>
+    <p><a href="/billboard">Click here</a> to view the Billboard cache</p>
+    <p><a href="/history" >Click here</a> to view the Billboard's acquisition history</p>
     <p><a href="/about">Click here</a> if you are a human who wants to know more about the project</p>
 </section>
