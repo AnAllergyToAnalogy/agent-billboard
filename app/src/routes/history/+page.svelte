@@ -9,13 +9,11 @@
 
     let history = data.history;
 
+    let pageLoadTime = Date.now();
 
-    // let poster = data.cache.poster;
-    // let amount = BigInt(data.cache.amount);
-    // let message = data.cache.message;
-    // let timestamp = data.cache.timestamp;
-
-        let pageLoadTime = Date.now();
+    for(let i in history){
+        history[i].ago = formatDuration(pageLoadTime - history[i].timestamp)
+    }
 
 </script>
 
@@ -158,7 +156,6 @@
 
 <section>
         <h2>Acquisition History</h2>
-        <!-- <small>Data age: {formatDuration(pageLoadTime - timestamp)}.</small> -->
 
         {#each history as item}
 

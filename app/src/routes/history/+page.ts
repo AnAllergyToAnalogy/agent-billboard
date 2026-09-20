@@ -16,8 +16,7 @@ export const load: PageLoad = async ({ params }: any) => {
     }else{
         history = await response.json();
     }
-
     return {
-        history
+        history,
     };
 };
